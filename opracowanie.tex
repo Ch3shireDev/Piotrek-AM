@@ -1,0 +1,200 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{paralist}
+\usepackage{verbatim}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[linguistics]{forest}
+\usetikzlibrary{shapes,backgrounds}
+\usepackage[margin=1in]{geometry}
+\setlength\parindent{0pt}
+\theoremstyle{definition}
+\newtheorem{zadanie}{Zadanie}
+\renewcommand*{\proofname}{Rozwiązanie}
+\maxdeadcycles=1000
+\extrafloats{1000}
+\title{Algebra i analiza matematyczna}
+\author{Igor Nowicki}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Zadania z egzaminów}
+
+\begin{zadanie}
+    Dla jakich parametrów $m\in\mathbb R$ funkcjonał liniowy
+
+    $$f((x_1,x_2), (y_1,y_2)) = x_1y_1+mx_1y_2+mx_2y_1+(3-2m)x_2y_2$$
+
+    jest iloczynem skalarnym w $\mathbb R^2$? Dla $m=-1$ wyznaczyć bazę $\mathbb R^2$, w której $f$ ma macierz diagonalną.
+\end{zadanie}
+\begin{proof}
+    Przedstawiony powyżej funkcjonał liniowy można opisać macierzą:
+
+    $$\mathcal M_f = \begin{bmatrix}
+            1 & m    \\
+            m & 3-2m
+        \end{bmatrix}.$$
+
+    Aby forma liniowa mogła być iloczynem skalarnym, musi być dodatnio określona, tj. jej wyznacznik musi być większy od zera. Zatem:
+
+    $$\det\mathcal M_f = \begin{vmatrix}
+            1 & m    \\
+            m & 3-2m
+        \end{vmatrix} = 1\cdot(3-2m) - m\cdot m > 0,$$
+
+    co sprowadza się do nierówności:
+    \begin{align*}
+        m^2+2m-3   & < 0, \\
+        (m+3)(m-1) & < 0.
+    \end{align*}
+
+    która ma rozwiązania dla $m\in (-3, 1)$.
+
+    Dalej - chcemy wyznaczyć bazę dla przypadku kiedy $m = -1$, to znaczy, kiedy macierz przyjmuje formę:
+
+    $$\mathcal M = \begin{bmatrix}
+            1  & -1 \\
+            -1 & 5
+        \end{bmatrix}.$$
+
+    Bazą jest minimalny układ wektorów które opisują nam przestrzeń w której się poruszamy - ponieważ funkcjonał liniowy działa na przestrzeni dwuwymiarowej,
+    ożemy o bazie myśleć jako o dwóch wektorach:
+    $x_1 = (1,0)$ oraz $x_2=(0,1)$. Poszukujemy takiej nowej kombinacji wektorów, dla której nasza forma liniowa przyjmie postać diagonalną, tj. niezerowe wartości będą jedynie na przekątnej. Sprowadza się to do znalezienia takiej macierzy $B$, dla której:
+
+    $$B\cdot M\cdot B^{-1} =  \begin{bmatrix}
+            \lambda_1 & 0         \\
+            0         & \lambda_2
+        \end{bmatrix}$$
+
+    Wartości $\lambda_1$, $\lambda_2$ możemy znaleźć przez szukanie rozwiązań równania:
+
+    $$\det \begin{bmatrix}
+            1-\lambda & -1        \\
+            -1        & 5-\lambda
+        \end{bmatrix} = 0,$$
+
+    które przekształca się do równania kwadratowego $(1-\lambda)(5-\lambda) -1 = 0.$ Jego rozwiązaniami są $\lambda_1 = 3-\sqrt5$ oraz $\lambda_2=3+\sqrt5$.
+
+    Bazą diagonalizującą będzie układ takich wektorów, dla których spełnione będą równania:
+
+    \begin{align*}
+        \begin{bmatrix}
+            1-\lambda_1 & -1          \\
+            -1          & 5-\lambda_1
+        \end{bmatrix} \cdot v_1  & = \begin{bmatrix}0\\0\end{bmatrix},  \\
+        \begin{bmatrix}
+            1-\lambda_2 & -1          \\
+            -1          & 5-\lambda_2
+        \end{bmatrix} \cdot v_2 & = \begin{bmatrix}0\\0\end{bmatrix},
+    \end{align*}
+
+    Rozwiązaniem będą wektory $v_1 = (2+\sqrt5, 1)$ oraz $v_2 = (2-\sqrt5, 1)$.
+
+    Algorytm postępowania do znalezienie parametru $m$ dla którego funkcjonał liniowy jest iloczynem skalarnym:
+    \begin{enumerate}
+        \item Utworzyć macierz na podstawie funkcjonału,
+        \item sprawdzić w jakich warunkach wyznacznik macierzy przyjmuje wartość powyżej zera.
+    \end{enumerate}
+
+    Algorytm postępowania do znalezienia bazy diagonalizującej:
+
+    \begin{enumerate}
+        \item Utworzyć macierz funkcjonału $f$,
+        \item znaleźć wartości własne macierzy,
+        \item znaleźć wektory własne odpowiadające wartościom własnym macierzy.
+    \end{enumerate}
+
+\end{proof}
+
+\begin{zadanie}
+    Wyznaczyć bazę ortogonalną podprzestrzeni $V\subset \mathbb R^4$ o równaniu $x_1-2x_2+x_3-x_4 = 0$.
+\end{zadanie}
+\begin{proof}
+    Pojedyncze równanie dla przestrzeni czterowymiarowej ogranicza nam podprzestrzeń do trzech wymiarów. Znalezienie bazy ortogonalnej oznacza znalezienie takich trzech wektorów które:
+    \begin{enumerate}
+        \item spełniają podane równanie (należą do \textit{jądra} przekształcenia liniowego),
+        \item są wzajemnie prostopadłe, tj. $\mathbf v_i\cdot\mathbf v_j = 0$ dla $i\neq j$.
+    \end{enumerate}
+
+    Pierwszy warunek pozwala nam na znalezienie całej masy wektorów - przykładem mogą być $v_1=(2,1,0,0), v_2 = (0,1,1,0), v_3=(0,0,1,1)$. Jedynym problemem jest fakt, że nie są to wektory wzajemnie prostopadłe - ich wzajemne iloczyny skalarne nie są równe zeru. Z pomocą może przyjść \textbf{ortogonalizacja Grama-Schmitda} - algorytm przekształcania dowolnego zestawu wektorów liniowo niezależnych do bazy ortogonalnej.
+
+    Dla zestawu trzech wektorów procedura przebiega następująco:
+
+    \begin{align*}
+        \mathbf u_1 & = \mathbf v_1,                                                                                                                                                              \\
+        \mathbf u_2 & = \mathbf v_2 - \frac{\mathbf v_2\cdot \mathbf u_1}{\mathbf u_1\cdot \mathbf u_1}\mathbf u_1,                                                                               \\
+        \mathbf u_3 & = \mathbf v_3 - \frac{\mathbf v_3\cdot \mathbf u_2}{\mathbf u_2\cdot \mathbf u_2}\mathbf u_2- \frac{\mathbf v_3\cdot \mathbf u_1}{\mathbf u_1\cdot \mathbf u_1}\mathbf u_1.
+    \end{align*}
+\end{proof}
+
+
+\begin{zadanie}
+    Wyznaczyć rzut ortogonalny wektora $\mathbf u=(1,-2,3)$ na prostą $L\subset \mathbb R^3$ o równaniach:
+
+    $$x_1-x_3 = x_1+2x_2+x_3 = 0.$$
+
+    Obliczyć odległość wektora $\mathbf u$ od tej prostej.
+\end{zadanie}
+\begin{proof}
+    Algorytm postępowania:
+    \begin{enumerate}
+        \item Znaleźć jądro przekształcenia liniowego - to będzie nasza baza podprzestrzeni liniowej, w tym wypadku prostej.
+        \item Przeprowadzić rzut ortogonalny wektora $\mathbf u$ na podprzestrzeń rozpinaną przez wektor $\mathbf v$ - będzie to opisane wzorem $P(\mathbf u) = \frac{\mathbf v\cdot \mathbf u}{\mathbf v\cdot \mathbf v}\mathbf v$.
+        \item Aby obliczyć odległość wektora od prostej, należy od wejściowego wektora $u$ odjąć wektor uzyskany przez rzucenie na podprzestrzeń, a następnie wyliczyć jego długość.
+    \end{enumerate}
+\end{proof}
+
+\begin{zadanie}
+    Zbadać wypukłość zbioru $W\subset \mathbb R^2$ danego warunkami:
+
+    $$x^4+y^2\leq 1 \and y\geq \max\{e^{x^2}-1, -\ln(x+1)\}\and x>-1.$$
+\end{zadanie}
+
+\begin{proof}
+Przecięcie zbiorów wypukłych jest zbiorem wypukłym. Możemy rozbić powyższe warunki na następujące:
+
+\begin{itemize}
+\item $x^4+y^2\leq 1$
+\item $y\geq e^{x^2}-1$ dla $x>0$
+\item $y\geq -\ln(x+1)$ dla $x\leq0$.
+\end{itemize}
+
+(warunek $x>-1$ jest spełniany automatycznie przy konieczności pierwszego warunku).
+\end{proof}
+
+\begin{zadanie}
+Wyznaczyć rozwiązanie równania różniczkowego:
+
+$$y' - \frac yx = \frac{y^2}{\sqrt{x^2+1}}$$
+
+spełniające warunek $y(1)=1$.
+\end{zadanie}
+\begin{proof}
+Należy dokonać podstawienia:
+
+$$y = vx,$$
+
+rozwiązać równanie dla $v(x)$ a następnie podstawić $y$ z powrotem.
+\end{proof}
+
+\begin{zadanie}
+Podać rozwiązanie ogólne równania różniczkowego:
+
+$$y'' - 4y' + 4y = xe^{-x}.$$
+\end{zadanie}
+
+\begin{proof}
+Należy wykonać podstawienie $z = y' - 2y$.
+\end{proof}
+
+\end{document}
