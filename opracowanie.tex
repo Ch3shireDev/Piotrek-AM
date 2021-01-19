@@ -28,6 +28,22 @@
 \maketitle
 \tableofcontents
 
+\section{Opracowanie}
+
+\begin{enumerate}
+\item Znajdywanie jądra przekształcenia liniowego
+\item Ortogonalizacja Grama-Schmitda
+\item Obliczanie wyznacznika
+\item Norma wektora
+\item Macierz jednostkowa
+\item Odwracanie macierzy
+\item Znajdywanie wartości własnych, wektorów własnych macierzy
+\item Diagonalizacja funkcjonału dwuliniowego
+\item Pochodne
+\item Całki
+\item Równania różniczkowe
+\end{enumerate}
+
 \section{Zadania z egzaminów}
 
 \subsection{Funkcjonały dwuliniowe}
@@ -233,7 +249,7 @@ $$\Big[F\Big] = \begin{bmatrix}
     Jeśli chcemy narzucić warunek by funkcjonał liniowy był jednocześnie iloczynem skalarnym, to forma musi być symetryczna, oraz jej wyznacznik musi być większy od zera. Dla macierzy $2\times2$ z parametrami sprowadza się to do rozwiązywania równania kwadratowego.
 
     Jeśli chcemy znaleźć bazę diagonalizującą, to musimy znaleźć takie wektory, które przemnożone przez macierz funkcjonału liniowego dają same siebie przemnożone przez liczbę - musimy znaleźć \textbf{wektory własne}.
-\subsection{Liczenie jądra}
+\subsection{Znajdywanie jądra}
 
 \begin{zadanie}
 Wyznaczyć bazę ortogonalną podprzestrzeni $V\in \mathbb R^4$ o równaniu $x_1-2x_2+x_3-x_4=0$.
@@ -283,26 +299,26 @@ Wyznaczyć bazę ortogonalną podprzestrzeni $V\in \mathbb R^4$ o równaniu $x_1
 \begin{zadanie}
 Zbadać wypukłość zbioru $W\in\mathbb R^2$ danego warunkami
 
-$$x^2-2x+2y^2\leq 1\and y\leq\min\{\ln(x+e,\sqrt{1-x})\}\and -e\leq x\leq 1.$$
+$$x^2-2x+2y^2\leq 1\wedge y\leq\min\{\ln(x+e),\sqrt{1-x}\}\wedge -e\leq x\leq 1.$$
 \end{zadanie}
 
 \begin{zadanie}
     Zbadać wypukłość zbioru $W\subset \mathbb R^2$ danego warunkami:
 
-    $$x^4+y^2\leq 1 \and y\geq \max\{e^{x^2}-1, -\ln(x+1)\}\and x>-1.$$
+    $$x^4+y^2\leq 1 \wedge y\geq \max\{e^{x^2}-1, -\ln(x+1)\}\wedge x>-1.$$
 \end{zadanie}
 
-\begin{proof}
-Przecięcie zbiorów wypukłych jest zbiorem wypukłym. Możemy rozbić powyższe warunki na następujące:
+% \begin{proof}
+% Przecięcie zbiorów wypukłych jest zbiorem wypukłym. Możemy rozbić powyższe warunki na następujące:
 
-\begin{itemize}
-\item $x^4+y^2\leq 1$
-\item $y\geq e^{x^2}-1$ dla $x>0$
-\item $y\geq -\ln(x+1)$ dla $x\leq0$.
-\end{itemize}
+% \begin{itemize}
+% \item $x^4+y^2\leq 1$
+% \item $y\geq e^{x^2}-1$ dla $x>0$
+% \item $y\geq -\ln(x+1)$ dla $x\leq0$.
+% \end{itemize}
 
-(warunek $x>-1$ jest spełniany automatycznie przy konieczności pierwszego warunku).
-\end{proof}
+% (warunek $x>-1$ jest spełniany automatycznie przy konieczności pierwszego warunku).
+% \end{proof}
 
 \subsection{Równania różniczkowe}
 
@@ -313,6 +329,9 @@ $$y' +2xy=\cos x e^{x^2}y^2$$
 
 spełniające warunek początkowy $y(0)=1$.
 \end{zadanie}
+\begin{proof}
+    Należy użyć funkcji pomocniczej, bądź dokonać podstawienia $z=ye^{x^2}$.
+\end{proof}
 
 \begin{zadanie}
 Wyznaczyć rozwiązanie ogólne równania różniczkowego
@@ -349,9 +368,12 @@ Wyznaczyć rozwiązanie ogólne układu równań różniczkowych:
 
 \begin{align*}
     \begin{cases} y'&= -y+3z-1,\\
-z'=3y-z-5.
+z'&=3y-z-5.
     \end{cases}
 \end{align*}
 \end{zadanie}
+\begin{proof}
+    Należy znaleźć wektory własne przekształcenia liniowego a następnie dokonać podstawienia.
+\end{proof}
 
 \end{document}
