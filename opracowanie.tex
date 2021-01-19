@@ -30,91 +30,214 @@
 
 \section{Zadania z egzaminów}
 
+\subsection{Funkcjonały dwuliniowe}
+
 \begin{zadanie}
-    Dla jakich parametrów $m\in\mathbb R$ funkcjonał liniowy
+    Dla jakich parametrów $m\in\mathbb R$ funkcjonał dwuliniowy
 
     $$f((x_1,x_2), (y_1,y_2)) = x_1y_1+mx_1y_2+mx_2y_1+(3-2m)x_2y_2$$
 
     jest iloczynem skalarnym w $\mathbb R^2$? Dla $m=-1$ wyznaczyć bazę $\mathbb R^2$, w której $f$ ma macierz diagonalną.
 \end{zadanie}
+
 \begin{proof}
-    Przedstawiony powyżej funkcjonał liniowy można opisać macierzą:
+Musimy wyznaczyć wartości parametru, dla którego funkcjonał dwuliniowy staje się iloczynem skalarnym. Z założenia, iloczyny skalarne mają szereg wymogów - to, by były symetryczne (tożsamość ze swoją transpozycją) oraz by były dodatnio określone (ich forma diagonalna musi zawierać same dodatnie liczby). Ponieważ obydwie forma jest symetryczna, pozostaje warunek dodatniej określoności - który w wypadku macierzy $2\times2$ sprowadza się do warunku dodatniego wyznacznika.
 
-    $$\mathcal M_f = \begin{bmatrix}
-            1 & m    \\
-            m & 3-2m
-        \end{bmatrix}.$$
+Zatem:
 
-    Aby forma liniowa mogła być iloczynem skalarnym, musi być dodatnio określona, tj. jej wyznacznik musi być większy od zera. Zatem:
+$$\det\begin{bmatrix}
+    1&m\\
+    m&(3-2m)
+\end{bmatrix} > 0$$
 
-    $$\det\mathcal M_f = \begin{vmatrix}
-            1 & m    \\
-            m & 3-2m
-        \end{vmatrix} = 1\cdot(3-2m) - m\cdot m > 0,$$
+Następnie - potrzebujemy wyznaczyć taką bazę, dla której 
 
-    co sprowadza się do nierówności:
-    \begin{align*}
-        m^2+2m-3   & < 0, \\
-        (m+3)(m-1) & < 0.
-    \end{align*}
+$$\big[f\big] = \begin{bmatrix}
+    1&-1\\
+    -1&5
+\end{bmatrix}$$
 
-    która ma rozwiązania dla $m\in (-3, 1)$.
+ma macierz diagonalną. Polega to na szukaniu takiej macierzy $P$ o wyznaczniku $\det P=1$, dla której spełniony jest warunek:
 
-    Dalej - chcemy wyznaczyć bazę dla przypadku kiedy $m = -1$, to znaczy, kiedy macierz przyjmuje formę:
+$$P^T\big[f\big]P = \text{diag}(\lambda_1, \lambda_2),$$
 
-    $$\mathcal M = \begin{bmatrix}
-            1  & -1 \\
-            -1 & 5
-        \end{bmatrix}.$$
+gdzie $\lambda_1, \lambda_2$ są \textbf{wartościami własnymi} macierzy. Otóż, wartości własne $\lambda$ to rozwiązania równania:
 
-    Bazą jest minimalny układ wektorów które opisują nam przestrzeń w której się poruszamy - ponieważ funkcjonał liniowy działa na przestrzeni dwuwymiarowej,
-    ożemy o bazie myśleć jako o dwóch wektorach:
-    $x_1 = (1,0)$ oraz $x_2=(0,1)$. Poszukujemy takiej nowej kombinacji wektorów, dla której nasza forma liniowa przyjmie postać diagonalną, tj. niezerowe wartości będą jedynie na przekątnej. Sprowadza się to do znalezienia takiej macierzy $B$, dla której:
+$$\det\begin{bmatrix}
+    1-\lambda&-1\\
+    -1&5-\lambda
+\end{bmatrix} = 0,$$
 
-    $$B\cdot M\cdot B^{-1} =  \begin{bmatrix}
-            \lambda_1 & 0         \\
-            0         & \lambda_2
-        \end{bmatrix}$$
+co przekształca się do równania:
 
-    Wartości $\lambda_1$, $\lambda_2$ możemy znaleźć przez szukanie rozwiązań równania:
+$$(1-\lambda)(5-\lambda)-1=0,$$
 
-    $$\det \begin{bmatrix}
-            1-\lambda & -1        \\
-            -1        & 5-\lambda
-        \end{bmatrix} = 0,$$
+o rozwiązaniach $\lambda_1 = 3-\sqrt{5}$ oraz $\lambda_2 = 3+\sqrt{5}$.
 
-    które przekształca się do równania kwadratowego $(1-\lambda)(5-\lambda) -1 = 0.$ Jego rozwiązaniami są $\lambda_1 = 3-\sqrt5$ oraz $\lambda_2=3+\sqrt5$.
+Dla tak znalezionych wartości należy teraz znaleźć wektory będące \textbf{jądrem} odpowiadających im macierzy. Dla $\lambda_1=3-\sqrt{5}$ mamy:
 
-    Bazą diagonalizującą będzie układ takich wektorów, dla których spełnione będą równania:
+$$\ker\begin{bmatrix}-2+\sqrt5 & -1\\-1&2+\sqrt5\end{bmatrix} = \begin{pmatrix}1\\-2+\sqrt{5}\end{pmatrix} = \mathbf v_1,$$
 
-    \begin{align*}
-        \begin{bmatrix}
-            1-\lambda_1 & -1          \\
-            -1          & 5-\lambda_1
-        \end{bmatrix} \cdot v_1  & = \begin{bmatrix}0\\0\end{bmatrix},  \\
-        \begin{bmatrix}
-            1-\lambda_2 & -1          \\
-            -1          & 5-\lambda_2
-        \end{bmatrix} \cdot v_2 & = \begin{bmatrix}0\\0\end{bmatrix},
-    \end{align*}
+oraz, dla drugiej wartości własnej $\lambda_2 = 3+\sqrt5$:
 
-    Rozwiązaniem będą wektory $v_1 = (2+\sqrt5, 1)$ oraz $v_2 = (2-\sqrt5, 1)$.
+$$\ker\begin{bmatrix}-2-\sqrt5 & -1\\-1&2-\sqrt5\end{bmatrix} = \begin{pmatrix}2-\sqrt{5}\\1\end{pmatrix} = \mathbf v_2,$$
 
-    Algorytm postępowania do znalezienie parametru $m$ dla którego funkcjonał liniowy jest iloczynem skalarnym:
-    \begin{enumerate}
-        \item Utworzyć macierz na podstawie funkcjonału,
-        \item sprawdzić w jakich warunkach wyznacznik macierzy przyjmuje wartość powyżej zera.
-    \end{enumerate}
+(można istotnie zauważyć, że $v_1\circ v_2 = 0$, co oznacza że są wzajemnie ortogonalne, to znaczy prostopadłe). Mając już wektory własne, jesteśmy w stanie wyznaczyć macierz zmiany bazy $P_{fe}$. Będą to po prostu wektory własne ustawione obok siebie kolumnami. Narzucamy jeszcze warunek normalizacji, tj. nasza macierz powinna być podzielona przez taką liczbę, by jej wyznacznik był równy 1. W tym wypadku będzie to pierwiastek z wyznacznika:
 
-    Algorytm postępowania do znalezienia bazy diagonalizującej:
+$$P_{fe} = \frac1{\sqrt{10-4\sqrt{5}}}\begin{bmatrix}1&2-\sqrt5\\-2+\sqrt5&1\end{bmatrix}.$$
 
-    \begin{enumerate}
-        \item Utworzyć macierz funkcjonału $f$,
-        \item znaleźć wartości własne macierzy,
-        \item znaleźć wektory własne odpowiadające wartościom własnym macierzy.
-    \end{enumerate}
+Odwrotność tej macierzy to będzie nasza poszukiwana macierz zmiany bazy $P_{ef}$. Szczęśliwie się składa, że dla bazy macierzy symetrycznej będzie to po prostu transponowana macierz $P_{fe}:$
+
+$$P_{ef} = P^T_{fe} = \frac1{\sqrt{10-4\sqrt{5}}}\begin{bmatrix}1&-2+\sqrt5\\2-\sqrt5&1\end{bmatrix}.$$
+
+Możemy sprawdzić, że istotnie ta macierz diagonalizuje naszą formę dwuliniową:
+
+$$\frac1{\sqrt{10-4\sqrt{5}}}\begin{bmatrix}1&2-\sqrt5\\-2+\sqrt5&1\end{bmatrix}\circ\begin{bmatrix}
+    1&-1\\
+    -1&5
+\end{bmatrix}\circ\frac1{\sqrt{10-4\sqrt{5}}}\begin{bmatrix}1&-2+\sqrt5\\2-\sqrt5&1\end{bmatrix}$$
+
+co przekształca się do:
+
+
+$$\frac1{10-4\sqrt{5}}\begin{bmatrix}1&2-\sqrt5\\-2+\sqrt5&1\end{bmatrix}\circ\begin{bmatrix}
+    1&-1\\
+    -1&5
+\end{bmatrix}\circ\begin{bmatrix}1&-2+\sqrt5\\2-\sqrt5&1\end{bmatrix} = \begin{bmatrix}3 - \sqrt5& 0\\ 0& 3 + \sqrt5\end{bmatrix}$$
 
 \end{proof}
+
+\begin{zadanie}
+Dla jakich parametrów $k\in\mathbb R$ funkcjonał dwuliniowy $f:\mathbb R^2\times\mathbb R^2\to\mathbb R$ dany wzorem:
+
+$$f((x_1,x_2)(y_1,y_2))=(k-3)x_1y_1+2x_1y_2+2x_2y_1+kx_2y_2$$
+
+jest iloczynem skalarnym? Dla $k=1$ wyznaczyć macierz $f$ w bazie $b_1=(1,-1), b_2=(0,2)$.
+\end{zadanie}
+
+Ponownie, zadanie wyznaczenia parametru sprowadza się do postawienia warunku wyznacznika większego niż zero. Jeśli chcemy uzyskać macierz przejścia do konkretnej bazy, to pamiętamy, że macierz przejścia z bazy $b$ do bazy kanonicznej do postawione kolumnowo obok siebie wektory $b_i$.
+
+$$B_{be} = \begin{bmatrix}1&0\\-1&2\end{bmatrix}$$
+
+Musimy znaleźć macierz odwrotną. Możemy to zrobić przez algorytm odwracania macierzy:
+
+$$B_{eb} = B_{be}^{-1} = \begin{bmatrix}1&0\\-1&2\end{bmatrix}^{-1}= \begin{bmatrix}1&0\\\frac12&\frac12\end{bmatrix}$$
+
+Potrzebujemy znormalizowanej macierzy zmiany bazy - będzie ona miała postać:
+
+$$P = \frac1{\sqrt{|B_{eb}|}}B_{eb} =\begin{bmatrix}\sqrt{2}&0\\\frac{\sqrt{2}}2&\frac{\sqrt{2}}2\end{bmatrix}$$
+
+Aby uzyskać macierz funkcjonału dwuliniowego w nowej bazie, dokonujemy następujących przekształceń:
+
+$$\big[f\big]_b = P^T\circ\big[f\big]_e\circ P =\begin{bmatrix}\sqrt{2}&\frac{\sqrt{2}}2\\0&\frac{\sqrt{2}}2\end{bmatrix}\circ \begin{bmatrix}-2&2\\2&1\end{bmatrix}\circ\begin{bmatrix}\sqrt{2}&0\\\frac{\sqrt{2}}2&\frac{\sqrt{2}}2\end{bmatrix} = \begin{bmatrix}\frac12&\frac52\\\frac52&\frac12\end{bmatrix}.$$
+
+\begin{zadanie}
+    W przestrzeni $\mathbb R^3$ z iloczynem skalarnym
+
+    $$f((x_1,x_2,x_3)(y_1,y_2,y_3)) = x_1y_1-x_1y_2-x_2y_1+2x_2y_2+x_3y_3$$
+
+    wyznaczyć bazę ortogonalną $\mathbb R^3$, która zawiera bazę podprzestrzeni
+
+    $$V=\{(x_1,x_2,x_3)\in\mathbb R^3:x_1+x_2+x_3=0\}.$$
+\end{zadanie}
+
+
+% \begin{proof}
+%     Przedstawiony powyżej funkcjonał liniowy można opisać macierzą:
+
+%     $$\mathcal M_f = \begin{bmatrix}
+%             1 & m    \\
+%             m & 3-2m
+%         \end{bmatrix}.$$
+
+%     Aby forma liniowa mogła być iloczynem skalarnym, musi być dodatnio określona, tj. jej wyznacznik musi być większy od zera. Zatem:
+
+%     $$\det\mathcal M_f = \begin{vmatrix}
+%             1 & m    \\
+%             m & 3-2m
+%         \end{vmatrix} = 1\cdot(3-2m) - m\cdot m > 0,$$
+
+%     co sprowadza się do nierówności:
+%     \begin{align*}
+%         m^2+2m-3   & < 0, \\
+%         (m+3)(m-1) & < 0.
+%     \end{align*}
+
+%     która ma rozwiązania dla $m\in (-3, 1)$.
+
+%     Dalej - chcemy wyznaczyć bazę dla przypadku kiedy $m = -1$, to znaczy, kiedy macierz przyjmuje formę:
+
+%     $$\mathcal M = \begin{bmatrix}
+%             1  & -1 \\
+%             -1 & 5
+%         \end{bmatrix}.$$
+
+%     Bazą jest minimalny układ wektorów które opisują nam przestrzeń w której się poruszamy - ponieważ funkcjonał liniowy działa na przestrzeni dwuwymiarowej,
+%     ożemy o bazie myśleć jako o dwóch wektorach:
+%     $x_1 = (1,0)$ oraz $x_2=(0,1)$. Poszukujemy takiej nowej kombinacji wektorów, dla której nasza forma liniowa przyjmie postać diagonalną, tj. niezerowe wartości będą jedynie na przekątnej. Sprowadza się to do znalezienia takiej macierzy $B$, dla której:
+
+%     $$B\cdot M\cdot B^{-1} =  \begin{bmatrix}
+%             \lambda_1 & 0         \\
+%             0         & \lambda_2
+%         \end{bmatrix}$$
+
+%     Wartości $\lambda_1$, $\lambda_2$ możemy znaleźć przez szukanie rozwiązań równania:
+
+%     $$\det \begin{bmatrix}
+%             1-\lambda & -1        \\
+%             -1        & 5-\lambda
+%         \end{bmatrix} = 0,$$
+
+%     które przekształca się do równania kwadratowego $(1-\lambda)(5-\lambda) -1 = 0.$ Jego rozwiązaniami są $\lambda_1 = 3-\sqrt5$ oraz $\lambda_2=3+\sqrt5$.
+
+%     Bazą diagonalizującą będzie układ takich wektorów, dla których spełnione będą równania:
+
+%     \begin{align*}
+%         \begin{bmatrix}
+%             1-\lambda_1 & -1          \\
+%             -1          & 5-\lambda_1
+%         \end{bmatrix} \cdot v_1  & = \begin{bmatrix}0\\0\end{bmatrix},  \\
+%         \begin{bmatrix}
+%             1-\lambda_2 & -1          \\
+%             -1          & 5-\lambda_2
+%         \end{bmatrix} \cdot v_2 & = \begin{bmatrix}0\\0\end{bmatrix},
+%     \end{align*}
+
+%     Rozwiązaniem będą wektory $v_1 = (2+\sqrt5, 1)$ oraz $v_2 = (2-\sqrt5, 1)$.
+
+%     Algorytm postępowania do znalezienie parametru $m$ dla którego funkcjonał liniowy jest iloczynem skalarnym:
+%     \begin{enumerate}
+%         \item Utworzyć macierz na podstawie funkcjonału,
+%         \item sprawdzić w jakich warunkach wyznacznik macierzy przyjmuje wartość powyżej zera.
+%     \end{enumerate}
+
+%     Algorytm postępowania do znalezienia bazy diagonalizującej:
+
+%     \begin{enumerate}
+%         \item Utworzyć macierz funkcjonału $f$,
+%         \item znaleźć wartości własne macierzy,
+%         \item znaleźć wektory własne odpowiadające wartościom własnym macierzy.
+%     \end{enumerate}
+% \end{proof}
+
+Podstawowe informacje:
+
+Jeśli mamy funkcjonał liniowy wyrażony jako $F((x_1,\dots,x_n)(y_1,\dots,y_n)) = \sum_{i,j=1}^na_{ij}x_iy_j$, to można go przedstawić za pomocą macierzy:
+
+$$\Big[F\Big] = \begin{bmatrix}
+    a_{11} & \dots & a_{1n}\\
+    \vdots & \ddots & \vdots\\
+    a_{n1} & \dots & a_{nn}
+    \end{bmatrix}$$
+
+    Jeśli chcemy narzucić warunek by funkcjonał liniowy był jednocześnie iloczynem skalarnym, to forma musi być symetryczna, oraz jej wyznacznik musi być większy od zera. Dla macierzy $2\times2$ z parametrami sprowadza się to do rozwiązywania równania kwadratowego.
+
+    Jeśli chcemy znaleźć bazę diagonalizującą, to musimy znaleźć takie wektory, które przemnożone przez macierz funkcjonału liniowego dają same siebie przemnożone przez liczbę - musimy znaleźć \textbf{wektory własne}.
+\subsection{Liczenie jądra}
+
+\begin{zadanie}
+Wyznaczyć bazę ortogonalną podprzestrzeni $V\in \mathbb R^4$ o równaniu $x_1-2x_2+x_3-x_4=0$.
+\end{zadanie}
 
 \begin{zadanie}
     Wyznaczyć bazę ortogonalną podprzestrzeni $V\subset \mathbb R^4$ o równaniu $x_1-2x_2+x_3-x_4 = 0$.
@@ -137,6 +260,7 @@
     \end{align*}
 \end{proof}
 
+\subsection{Rzuty ortogonalne}
 
 \begin{zadanie}
     Wyznaczyć rzut ortogonalny wektora $\mathbf u=(1,-2,3)$ na prostą $L\subset \mathbb R^3$ o równaniach:
@@ -153,6 +277,14 @@
         \item Aby obliczyć odległość wektora od prostej, należy od wejściowego wektora $u$ odjąć wektor uzyskany przez rzucenie na podprzestrzeń, a następnie wyliczyć jego długość.
     \end{enumerate}
 \end{proof}
+
+\subsection{Wypukłości zbiorów}
+
+\begin{zadanie}
+Zbadać wypukłość zbioru $W\in\mathbb R^2$ danego warunkami
+
+$$x^2-2x+2y^2\leq 1\and y\leq\min\{\ln(x+e,\sqrt{1-x})\}\and -e\leq x\leq 1.$$
+\end{zadanie}
 
 \begin{zadanie}
     Zbadać wypukłość zbioru $W\subset \mathbb R^2$ danego warunkami:
@@ -171,6 +303,21 @@ Przecięcie zbiorów wypukłych jest zbiorem wypukłym. Możemy rozbić powyższ
 
 (warunek $x>-1$ jest spełniany automatycznie przy konieczności pierwszego warunku).
 \end{proof}
+
+\subsection{Równania różniczkowe}
+
+\begin{zadanie}
+Wyznaczyć rozwiązanie równania różniczkowego
+
+$$y' +2xy=\cos x e^{x^2}y^2$$
+
+spełniające warunek początkowy $y(0)=1$.
+\end{zadanie}
+
+\begin{zadanie}
+Wyznaczyć rozwiązanie ogólne równania różniczkowego
+$$y''-6y'+9y = xe^x.$$
+\end{zadanie}
 
 \begin{zadanie}
 Wyznaczyć rozwiązanie równania różniczkowego:
@@ -196,5 +343,15 @@ $$y'' - 4y' + 4y = xe^{-x}.$$
 \begin{proof}
 Należy wykonać podstawienie $z = y' - 2y$.
 \end{proof}
+
+\begin{zadanie}
+Wyznaczyć rozwiązanie ogólne układu równań różniczkowych:
+
+\begin{align*}
+    \begin{cases} y'&= -y+3z-1,\\
+z'=3y-z-5.
+    \end{cases}
+\end{align*}
+\end{zadanie}
 
 \end{document}
