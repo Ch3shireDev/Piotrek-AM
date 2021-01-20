@@ -28,22 +28,6 @@
 \maketitle
 \tableofcontents
 
-\section{Opracowanie}
-
-\begin{enumerate}
-\item Znajdywanie jądra przekształcenia liniowego
-\item Ortogonalizacja Grama-Schmitda
-\item Obliczanie wyznacznika
-\item Norma wektora
-\item Macierz jednostkowa
-\item Odwracanie macierzy
-\item Znajdywanie wartości własnych, wektorów własnych macierzy
-\item Diagonalizacja funkcjonału dwuliniowego
-\item Pochodne
-\item Całki
-\item Równania różniczkowe
-\end{enumerate}
-
 \section{Zadania z egzaminów}
 
 \subsection{Funkcjonały dwuliniowe}
@@ -57,7 +41,7 @@
 \end{zadanie}
 
 \begin{proof}
-Musimy wyznaczyć wartości parametru, dla którego funkcjonał dwuliniowy staje się iloczynem skalarnym. Z założenia, iloczyny skalarne mają szereg wymogów - to, by były symetryczne (tożsamość ze swoją transpozycją) oraz by były dodatnio określone (ich forma diagonalna musi zawierać same dodatnie liczby). Ponieważ obydwie forma jest symetryczna, pozostaje warunek dodatniej określoności - który w wypadku macierzy $2\times2$ sprowadza się do warunku dodatniego wyznacznika.
+Musimy wyznaczyć wartości parametru, dla którego funkcjonał dwuliniowy staje się iloczynem skalarnym. Z założenia, iloczyny skalarne mają szereg wymogów - to, by były symetryczne (tożsamość ze swoją transpozycją) oraz by były dodatnio określone (ich forma diagonalna musi zawierać same dodatnie liczby). Ponieważ obydwie forma jest symetryczna, pozostaje warunek dodatniej określoności. Warunkiem koniecznym (ale nie wystarczającym) dodatniej określoności jest by wyznacznik macierzy był dodatni. Dodatkowo, wszystkie wartości własne muszę być większe od zera.
 
 Zatem:
 
@@ -133,19 +117,19 @@ jest iloczynem skalarnym? Dla $k=1$ wyznaczyć macierz $f$ w bazie $b_1=(1,-1), 
 
 Ponownie, zadanie wyznaczenia parametru sprowadza się do postawienia warunku wyznacznika większego niż zero. Jeśli chcemy uzyskać macierz przejścia do konkretnej bazy, to pamiętamy, że macierz przejścia z bazy $b$ do bazy kanonicznej do postawione kolumnowo obok siebie wektory $b_i$.
 
-$$B_{be} = \begin{bmatrix}1&0\\-1&2\end{bmatrix}$$
+$$P = \begin{bmatrix}1&0\\-1&2\end{bmatrix}$$
 
-Musimy znaleźć macierz odwrotną. Możemy to zrobić przez algorytm odwracania macierzy:
+% Musimy znaleźć macierz odwrotną. Możemy to zrobić przez algorytm odwracania macierzy:
 
-$$B_{eb} = B_{be}^{-1} = \begin{bmatrix}1&0\\-1&2\end{bmatrix}^{-1}= \begin{bmatrix}1&0\\\frac12&\frac12\end{bmatrix}$$
+% $$B_{eb} = B_{be}^{-1} = \begin{bmatrix}1&0\\-1&2\end{bmatrix}^{-1}= \begin{bmatrix}1&0\\\frac12&\frac12\end{bmatrix}$$
 
-Potrzebujemy znormalizowanej macierzy zmiany bazy - będzie ona miała postać:
+% Potrzebujemy znormalizowanej macierzy zmiany bazy - będzie ona miała postać:
 
-$$P = \frac1{\sqrt{|B_{eb}|}}B_{eb} =\begin{bmatrix}\sqrt{2}&0\\\frac{\sqrt{2}}2&\frac{\sqrt{2}}2\end{bmatrix}$$
+% $$P = \frac1{\sqrt{|B_{eb}|}}B_{eb} =\begin{bmatrix}\sqrt{2}&0\\\frac{\sqrt{2}}2&\frac{\sqrt{2}}2\end{bmatrix}$$
 
 Aby uzyskać macierz funkcjonału dwuliniowego w nowej bazie, dokonujemy następujących przekształceń:
 
-$$\big[f\big]_b = P^T\circ\big[f\big]_e\circ P =\begin{bmatrix}\sqrt{2}&\frac{\sqrt{2}}2\\0&\frac{\sqrt{2}}2\end{bmatrix}\circ \begin{bmatrix}-2&2\\2&1\end{bmatrix}\circ\begin{bmatrix}\sqrt{2}&0\\\frac{\sqrt{2}}2&\frac{\sqrt{2}}2\end{bmatrix} = \begin{bmatrix}\frac12&\frac52\\\frac52&\frac12\end{bmatrix}.$$
+$$\big[f\big]_b =\frac1{\det P} P^T\circ\big[f\big]_e\circ P$$
 
 \begin{zadanie}
     W przestrzeni $\mathbb R^3$ z iloczynem skalarnym
